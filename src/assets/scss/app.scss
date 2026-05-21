@@ -1,0 +1,21 @@
+/*
+  IslamQA Admin Dashboard
+  Imports TechModulus dashboard theme from sibling project
+*/
+
+// Import the full TechModulus theme (variables, tailwind base, structure, components, plugins)
+@import "./techmodulus/app";
+
+// IslamQA Admin overrides
+:root {
+  --islamqa-primary: #2e7d32;
+  --islamqa-gold: #c8a84b;
+}
+
+// Override primary color in sidebar/topbar to use green
+[data-menu-color="light"] .app-menu {
+  .menu-link.active,
+  .menu-link:hover {
+    color: var(--islamqa-primary) !important;
+  }
+}

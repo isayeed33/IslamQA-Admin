@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link href="/favicon.ico" rel="shortcut icon"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="IslamQA Admin Dashboard" name="description"/>
+    <title>IslamQA Admin Dashboard</title>
+    <style>
+        .splash-screen {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            background: white;
+            display: flex;
+            height: 100%;
+            width: 100%;
+            transform: translate(-50%, -50%);
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: all 15s linear;
+            overflow: hidden;
+        }
+        div:has(div) + .splash-screen {
+            animation: fadeout 0.7s forwards;
+            z-index: 0;
+        }
+        @keyframes fadeout {
+            to { opacity: 0; visibility: hidden; }
+        }
+    </style>
+    <script>const global = globalThis;</script>
+</head>
+<body>
+<div id="islamqa-admin"></div>
+<div class="splash-screen">
+    <div style="text-align:center;color:#2e7d32;font-family:sans-serif;">
+        <div style="font-size:2rem;font-weight:bold;">☪ IslamQA</div>
+        <div style="font-size:0.9rem;margin-top:0.5rem;color:#666;">Admin Dashboard</div>
+    </div>
+</div>
+<script src="/src/index.tsx" type="module"></script>
+<noscript>You need to enable JavaScript to run this app.</noscript>
+</body>
+</html>
