@@ -12,41 +12,15 @@ Admin panel for managing the [islamqa-clone](../islamqa-clone) content platform 
 | npm | 9.x | comes with Node |
 | Git | any | for cloning |
 
-> **Windows users:** The SCSS layer imports styles from a sibling project (`techmodulus-dashboard`). Both repos must sit in the same parent folder for the import path to resolve correctly. See [Project Layout](#project-layout) below.
-
----
-
-## Project Layout
-
-This project depends on styles from `techmodulus-dashboard`, which must be cloned as a sibling directory:
-
-```
-ZP-Projects/
-├── islamqa-admin/          ← this repo
-├── islamqa-clone/          ← the public-facing site
-└── techmodulus-dashboard/  ← required for SCSS theme
-```
-
-`src/assets/scss/app.scss` imports:
-
-```scss
-@import "../../../../techmodulus-dashboard/src/assets/scss/app";
-```
-
-If `techmodulus-dashboard` is missing, Vite will fail with a Sass import error.
-
 ---
 
 ## Quick Start
 
 ```bash
-# 1. Clone both required repos (skip if already cloned)
-git clone <techmodulus-dashboard-url> ../techmodulus-dashboard
-
-# 2. Install dependencies
+# 1. Install dependencies
 npm install
 
-# 3. Start the dev server
+# 2. Start the dev server
 npm run dev
 ```
 
@@ -101,36 +75,42 @@ npm run lint      # Run ESLint across all .ts/.tsx files
 src/
 ├── assets/
 │   └── scss/
-│       ├── app.scss          # Imports TechModulus theme + IslamQA overrides
-│       └── icons.scss        # Icon font imports
-├── components/               # Shared UI components (FormInput, PageBreadcrumb, etc.)
+│       ├── app.scss              # Entry point: variables, Tailwind, structure, components, plugins
+│       ├── icons.scss            # Icon font imports (MingCute, Material Symbols)
+│       ├── config/               # SCSS variables and theme config
+│       ├── structure/            # Sidebar and topbar layout styles
+│       ├── components/           # Buttons, cards, forms, reboot, helpers, print
+│       ├── plugins/              # Third-party plugin styles (charts, editors, tables, etc.)
+│       └── icons/                # Icon font partials
+├── components/                   # Shared UI components (FormInput, PageBreadcrumb, etc.)
 ├── constants/
-│   └── menu.ts               # Sidebar navigation structure
+│   └── menu.ts                   # Sidebar navigation structure
 ├── helpers/
-│   ├── fake-backend.ts       # Mock API (axios-mock-adapter)
+│   ├── fake-backend.ts           # Mock API (axios-mock-adapter)
 │   └── api/
-│       ├── apiCore.ts        # Auth helpers, session management
-│       └── auth.ts           # Login / logout API wrappers
-├── layouts/                  # Vertical layout, Topbar, LeftSideBar, Footer
+│       ├── apiCore.ts            # Auth helpers, session management
+│       └── auth.ts               # Login / logout API wrappers
+├── layouts/                      # Vertical layout, Topbar, LeftSideBar, Footer
 ├── pages/
-│   ├── auth/                 # Login, Register
-│   ├── dashboard/            # Overview with stats and recent activity
-│   ├── questions/            # List, Create, Edit
-│   ├── answers/              # List, Create, Edit
-│   ├── new-answers/          # List, Create (featured/curated answers)
-│   ├── essential-answers/    # List, Create, Edit
-│   ├── articles/             # List, Create, Edit
-│   ├── books/                # List, Create, Edit
-│   ├── knowledge-files/      # List, Upload
-│   ├── categories/           # List, Create
-│   └── settings/             # General, SEO, Notifications
-├── redux/                    # Store, reducers, sagas
+│   ├── auth/                     # Login, Register
+│   ├── dashboard/                # Overview with stats and recent activity
+│   ├── questions/                # List, Create, Edit
+│   ├── articles/                 # List, Create, Edit
+│   ├── books/                    # List, Create, Edit
+│   ├── faqs/                     # List, Create, Edit
+│   ├── categories/               # List, Create, Edit
+│   ├── corrections/              # List
+│   ├── knowledge-files/          # List, Upload
+│   ├── site-pages/               # List, Edit
+│   ├── user-questions/           # List
+│   └── settings/                 # General settings, Pages
+├── redux/                        # Store, reducers, sagas
 ├── routes/
-│   ├── index.tsx             # All route definitions (lazy-loaded)
-│   ├── Routes.tsx            # Router component
-│   └── PrivateRoute.tsx      # Auth guard
+│   ├── index.tsx                 # All route definitions (lazy-loaded)
+│   ├── Routes.tsx                # Router component
+│   └── PrivateRoute.tsx          # Auth guard
 └── types/
-    └── islamqa.ts            # Shared TypeScript interfaces
+    └── islamqa.ts                # Shared TypeScript interfaces
 ```
 
 ---
@@ -179,10 +159,6 @@ document.documentElement.setAttribute('data-mode', 'dark');
 ---
 
 ## Common Issues
-
-### `Cannot find module '…/techmodulus-dashboard/src/assets/scss/app'`
-
-`techmodulus-dashboard` is not cloned at the expected sibling path. See [Project Layout](#project-layout).
 
 ### `'vite' is not recognized`
 

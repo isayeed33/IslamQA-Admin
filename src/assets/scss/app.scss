@@ -1,10 +1,43 @@
-/*
-  IslamQA Admin Dashboard
-  Imports TechModulus dashboard theme from sibling project
-*/
+// Custom Variables
+@import "./config/variables";
+@import "./config/theme-config";
 
-// Import the full TechModulus theme (variables, tailwind base, structure, components, plugins)
-@import "./techmodulus/app";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Structure
+@import "./structure/sidenav";
+@import "./structure/topbar";
+
+// Components
+@import "./components/reboot";
+@import "./components/buttons";
+@import "./components/card";
+@import "./components/forms";
+@import "./components/print";
+@import "./components/helper";
+
+// Plugins
+@import "./plugins/swiper";
+@import "./plugins/simplebar";
+@import "./plugins/prismjs";
+@import "./plugins/sweetalert2";
+@import "./plugins/sortablejs";
+@import "./plugins/tour";
+@import "./plugins/glightbox";
+@import "./plugins/tippy-tooltip";
+@import "./plugins/apexcharts";
+@import "./plugins/dropzone";
+@import "./plugins/range-slider";
+@import "./plugins/flatpicker";
+@import "./plugins/colorpicker";
+@import "./plugins/choices";
+@import "./plugins/quilljs";
+@import "./plugins/gridjs";
+@import "./plugins/vector-maps";
+@import "./plugins/google-map";
+@import "./plugins/fullcalendar";
 
 // IslamQA Admin overrides
 :root {
