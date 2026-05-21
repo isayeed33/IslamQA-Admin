@@ -28,19 +28,6 @@ The app will be available at **http://localhost:5173**
 
 ---
 
-## Login Credentials (Development)
-
-The app uses a fake backend (no real API calls). Two accounts are pre-configured:
-
-| Role   | Email                   | Password   |
-|--------|-------------------------|------------|
-| Admin  | admin@islamqa.info      | admin123   |
-| Editor | editor@islamqa.info     | editor123  |
-
-> These credentials only exist in the mock layer (`src/helpers/fake-backend.ts`). They are not real accounts and have no network access.
-
----
-
 ## Available Scripts
 
 ```bash
@@ -86,7 +73,6 @@ src/
 ├── constants/
 │   └── menu.ts                   # Sidebar navigation structure
 ├── helpers/
-│   ├── fake-backend.ts           # Mock API (axios-mock-adapter)
 │   └── api/
 │       ├── apiCore.ts            # Auth helpers, session management
 │       └── auth.ts               # Login / logout API wrappers
@@ -112,30 +98,6 @@ src/
 └── types/
     └── islamqa.ts                # Shared TypeScript interfaces
 ```
-
----
-
-## Connecting to a Real Backend
-
-The project currently runs entirely on a client-side mock. To wire it up to a real API:
-
-1. **Remove the fake backend** — delete the `configureFakeBackend()` call in `src/index.tsx` and remove `src/helpers/fake-backend.ts`.
-
-2. **Set the base URL** — create a `.env` file in the project root:
-
-   ```env
-   VITE_API_BASE_URL=https://api.islamqa.info/v1
-   ```
-
-   Then update `src/helpers/api/apiCore.ts`:
-
-   ```ts
-   const API_URL = import.meta.env.VITE_API_BASE_URL;
-   ```
-
-3. **Replace mock data** — each List/Create/Edit page currently uses hardcoded arrays. Replace those with `useEffect` + axios calls, or wire in Redux Saga actions that hit the real endpoints.
-
-4. **Update auth** — `src/helpers/fake-backend.ts` returns a hardcoded JWT. Replace `src/helpers/api/auth.ts` to POST to your real `/auth/login` endpoint and store the returned token.
 
 ---
 
